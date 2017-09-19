@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    	<meta charset="utf-8">
+    	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=yes" />
+    	<title>期权</title>
+      	<script type="text/javascript">
+	      		var host = 'http://192.168.0.162:8058/';
+	  				var ajax = function(info){
+								if(window.XMLHttpRequest){
+								var xhr = new XMLHttpRequest();	
+								}else{
+								var xhr = new ActiveXObject("Microsoft.XMLHTTP");
+								}
+								var url = info.url;
+								var type = info.type||"GET";
+								var data = info.data||"";
+					
+								if(type=="GET"){
+								xhr.open("GET",url+"?"+data+"&t="+new Date().getTime(),true);
+								xhr.send();
+								}else{
+								xhr.open("POST",url,true);
+								xhr.setRequestHeader("Content-Type","application/json; charset=utf-8");
+								xhr.send(data);
+								}
+					
+								xhr.onload = function(){
+										if(info.success){
+												info.success(JSON.parse(xhr.responseText));
+										}
+								}
+						}
+  		</script>
+    <script src="static/tab.js" type="text/javascript" charset="utf-8"></script>
+  	<script src="static/resize.js" type="text/javascript" charset="utf-8"></script>
+  	<link rel="stylesheet" type="text/css" href="static/clear.css"/>
+  	<style type="text/css">
+  		html,body{
+  			height:100%;
+  		}
+  	</style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+
+</html>
